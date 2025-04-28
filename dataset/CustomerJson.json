@@ -1,0 +1,16 @@
+{
+	"name": "CustomerJson",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AdventureDb",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [],
+		"typeProperties": {
+			"schema": "SalesLT",
+			"table": "Customer"
+		}
+	}
+}
