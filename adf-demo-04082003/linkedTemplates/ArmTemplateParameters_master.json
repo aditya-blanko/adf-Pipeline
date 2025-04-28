@@ -5,11 +5,26 @@
 		"factoryName": {
 			"value": "adf-demo-04082003"
 		},
+		"AdventureDb_password": {
+			"value": ""
+		},
 		"AdventureWorksDB_password": {
+			"value": ""
+		},
+		"CustomersBlob_connectionString": {
 			"value": ""
 		},
 		"ProductsBlob_connectionString": {
 			"value": ""
+		},
+		"AdventureDb_properties_typeProperties_server": {
+			"value": "serveradfaditya.database.windows.net"
+		},
+		"AdventureDb_properties_typeProperties_database": {
+			"value": "aditya_db"
+		},
+		"AdventureDb_properties_typeProperties_userName": {
+			"value": "AdityaSinghal"
 		},
 		"AdventureWorksDB_properties_typeProperties_server": {
 			"value": "serveradfaditya.database.windows.net"
