@@ -4,6 +4,21 @@
 	"parameters": {
 		"factoryName": {
 			"value": "adf-demo-04082003"
+		},
+		"AdventureWorksDB_password": {
+			"value": ""
+		},
+		"ProductsBlob_connectionString": {
+			"value": ""
+		},
+		"AdventureWorksDB_properties_typeProperties_server": {
+			"value": "serveradfaditya.database.windows.net"
+		},
+		"AdventureWorksDB_properties_typeProperties_database": {
+			"value": "aditya_db"
+		},
+		"AdventureWorksDB_properties_typeProperties_userName": {
+			"value": "AdityaSinghal"
 		}
 	}
 }
