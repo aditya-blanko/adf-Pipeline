@@ -1,5 +1,5 @@
 {
-	"name": "Json1",
+	"name": "ProductsBlob",
 	"properties": {
 		"linkedServiceName": {
 			"referenceName": "ProductsBlob",

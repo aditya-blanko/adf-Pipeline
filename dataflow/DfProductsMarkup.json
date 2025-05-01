@@ -16,7 +16,7 @@
 			"sinks": [
 				{
 					"dataset": {
-						"referenceName": "Json1",
+						"referenceName": "ProductsBlob",
 						"type": "DatasetReference"
 					},
 					"name": "sinkblob"
