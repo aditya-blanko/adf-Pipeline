@@ -13,8 +13,20 @@
 					"description": "Import data from ProductsTable"
 				}
 			],
-			"sinks": [],
-			"transformations": [],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "Json1",
+						"type": "DatasetReference"
+					},
+					"name": "sinkblob"
+				}
+			],
+			"transformations": [
+				{
+					"name": "CalculatedMarkup"
+				}
+			],
 			"scriptLines": [
 				"source(output(",
 				"          ProductID as integer,",
@@ -38,7 +50,12 @@
 				"     allowSchemaDrift: true,",
 				"     validateSchema: false,",
 				"     isolationLevel: 'READ_UNCOMMITTED',",
-				"     format: 'table') ~> ProductSource"
+				"     format: 'table') ~> ProductSource",
+				"ProductSource derive(Markup = ListPrice / StandardCost) ~> CalculatedMarkup",
+				"CalculatedMarkup sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true) ~> sinkblob"
 			]
 		}
 	}
