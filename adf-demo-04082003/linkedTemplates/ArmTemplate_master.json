@@ -15,6 +15,10 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'password' of 'AdventureWorksDB'"
 		},
+		"AdventureWorksForMarkup_password": {
+			"type": "secureString",
+			"metadata": "Secure string for 'password' of 'AdventureWorksForMarkup'"
+		},
 		"CustomersBlob_connectionString": {
 			"type": "secureString",
 			"metadata": "Secure string for 'connectionString' of 'CustomersBlob'"
@@ -44,6 +48,18 @@
 			"defaultValue": "aditya_db"
 		},
 		"AdventureWorksDB_properties_typeProperties_userName": {
+			"type": "string",
+			"defaultValue": "AdityaSinghal"
+		},
+		"AdventureWorksForMarkup_properties_typeProperties_server": {
+			"type": "string",
+			"defaultValue": "serveradfaditya.database.windows.net"
+		},
+		"AdventureWorksForMarkup_properties_typeProperties_database": {
+			"type": "string",
+			"defaultValue": "aditya_db"
+		},
+		"AdventureWorksForMarkup_properties_typeProperties_userName": {
 			"type": "string",
 			"defaultValue": "AdityaSinghal"
 		},
@@ -80,6 +96,9 @@
 					"AdventureWorksDB_password": {
 						"value": "[parameters('AdventureWorksDB_password')]"
 					},
+					"AdventureWorksForMarkup_password": {
+						"value": "[parameters('AdventureWorksForMarkup_password')]"
+					},
 					"CustomersBlob_connectionString": {
 						"value": "[parameters('CustomersBlob_connectionString')]"
 					},
@@ -103,6 +122,15 @@
 					},
 					"AdventureWorksDB_properties_typeProperties_userName": {
 						"value": "[parameters('AdventureWorksDB_properties_typeProperties_userName')]"
+					},
+					"AdventureWorksForMarkup_properties_typeProperties_server": {
+						"value": "[parameters('AdventureWorksForMarkup_properties_typeProperties_server')]"
+					},
+					"AdventureWorksForMarkup_properties_typeProperties_database": {
+						"value": "[parameters('AdventureWorksForMarkup_properties_typeProperties_database')]"
+					},
+					"AdventureWorksForMarkup_properties_typeProperties_userName": {
+						"value": "[parameters('AdventureWorksForMarkup_properties_typeProperties_userName')]"
 					}
 				}
 			},

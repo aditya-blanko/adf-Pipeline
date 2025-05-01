@@ -11,6 +11,9 @@
 		"AdventureWorksDB_password": {
 			"value": ""
 		},
+		"AdventureWorksForMarkup_password": {
+			"value": ""
+		},
 		"CustomersBlob_connectionString": {
 			"value": ""
 		},
@@ -33,6 +36,15 @@
 			"value": "aditya_db"
 		},
 		"AdventureWorksDB_properties_typeProperties_userName": {
+			"value": "AdityaSinghal"
+		},
+		"AdventureWorksForMarkup_properties_typeProperties_server": {
+			"value": "serveradfaditya.database.windows.net"
+		},
+		"AdventureWorksForMarkup_properties_typeProperties_database": {
+			"value": "aditya_db"
+		},
+		"AdventureWorksForMarkup_properties_typeProperties_userName": {
 			"value": "AdityaSinghal"
 		},
 		"containerUri": {
