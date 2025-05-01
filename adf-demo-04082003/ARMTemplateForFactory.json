@@ -202,7 +202,7 @@
 							"storedProcedureName": "[[dbo].[UpdateProducts]"
 						},
 						"linkedServiceName": {
-							"referenceName": "AdventureWorksForMarkup",
+							"referenceName": "AdventureDb",
 							"type": "LinkedServiceReference"
 						}
 					}
@@ -215,7 +215,7 @@
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/datasets/ProductsTable')]",
 				"[concat(variables('factoryId'), '/datasets/ProductsBlob')]",
-				"[concat(variables('factoryId'), '/linkedServices/AdventureWorksForMarkup')]"
+				"[concat(variables('factoryId'), '/linkedServices/AdventureDb')]"
 			]
 		},
 		{
