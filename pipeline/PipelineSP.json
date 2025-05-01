@@ -67,7 +67,7 @@
 					"storedProcedureName": "[dbo].[UpdateProducts]"
 				},
 				"linkedServiceName": {
-					"referenceName": "AdventureWorksForMarkup",
+					"referenceName": "AdventureDb",
 					"type": "LinkedServiceReference"
 				}
 			}
