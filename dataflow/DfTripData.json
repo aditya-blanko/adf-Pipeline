@@ -68,7 +68,7 @@
 				"TripDatacsv, TripFareTable join(TripDatacsv@medallion == TripFareTable@medallion",
 				"     && TripDatacsv@hack_license == TripFareTable@hack_license",
 				"     && TripDatacsv@vendor_id == TripFareTable@vendor_id",
-				"     && TripDatacsv@pickup_datetime == toDate(TripFareTable@pickup_datetime),",
+				"     && TripDatacsv@pickup_datetime == TripFareTable@pickup_datetime,",
 				"     joinType:'inner',",
 				"     matchType:'exact',",
 				"     ignoreSpaces: false,",
