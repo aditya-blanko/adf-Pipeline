@@ -7,6 +7,10 @@
 			"metadata": "Data Factory name",
 			"defaultValue": "adf-demo-04082003"
 		},
+		"ADLSGen2_accountKey": {
+			"type": "secureString",
+			"metadata": "Secure string for 'accountKey' of 'ADLSGen2'"
+		},
 		"AdventureDb_password": {
 			"type": "secureString",
 			"metadata": "Secure string for 'password' of 'AdventureDb'"
@@ -18,6 +22,10 @@
 		"AdventureWorksForMarkup_password": {
 			"type": "secureString",
 			"metadata": "Secure string for 'password' of 'AdventureWorksForMarkup'"
+		},
+		"BlobCsvToParquet_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'BlobCsvToParquet'"
 		},
 		"BlobTripDataFare_connectionString": {
 			"type": "secureString",
@@ -31,6 +39,10 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'accountKey' of 'DLSTripdata'"
 		},
+		"FlipkartBlob_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'FlipkartBlob'"
+		},
 		"ProductsBlob_connectionString": {
 			"type": "secureString",
 			"metadata": "Secure string for 'connectionString' of 'ProductsBlob'"
@@ -38,6 +50,10 @@
 		"SqlDBTripData_password": {
 			"type": "secureString",
 			"metadata": "Secure string for 'password' of 'SqlDBTripData'"
+		},
+		"ADLSGen2_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://saadlf.dfs.core.windows.net/"
 		},
 		"AdventureDb_properties_typeProperties_server": {
 			"type": "string",
@@ -118,6 +134,9 @@
 					"factoryName": {
 						"value": "[parameters('factoryName')]"
 					},
+					"ADLSGen2_accountKey": {
+						"value": "[parameters('ADLSGen2_accountKey')]"
+					},
 					"AdventureDb_password": {
 						"value": "[parameters('AdventureDb_password')]"
 					},
@@ -126,6 +145,9 @@
 					},
 					"AdventureWorksForMarkup_password": {
 						"value": "[parameters('AdventureWorksForMarkup_password')]"
+					},
+					"BlobCsvToParquet_connectionString": {
+						"value": "[parameters('BlobCsvToParquet_connectionString')]"
 					},
 					"BlobTripDataFare_connectionString": {
 						"value": "[parameters('BlobTripDataFare_connectionString')]"
@@ -136,11 +158,17 @@
 					"DLSTripdata_accountKey": {
 						"value": "[parameters('DLSTripdata_accountKey')]"
 					},
+					"FlipkartBlob_connectionString": {
+						"value": "[parameters('FlipkartBlob_connectionString')]"
+					},
 					"ProductsBlob_connectionString": {
 						"value": "[parameters('ProductsBlob_connectionString')]"
 					},
 					"SqlDBTripData_password": {
 						"value": "[parameters('SqlDBTripData_password')]"
+					},
+					"ADLSGen2_properties_typeProperties_url": {
+						"value": "[parameters('ADLSGen2_properties_typeProperties_url')]"
 					},
 					"AdventureDb_properties_typeProperties_server": {
 						"value": "[parameters('AdventureDb_properties_typeProperties_server')]"

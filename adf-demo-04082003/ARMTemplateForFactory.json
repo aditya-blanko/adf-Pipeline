@@ -7,6 +7,10 @@
 			"metadata": "Data Factory name",
 			"defaultValue": "adf-demo-04082003"
 		},
+		"ADLSGen2_accountKey": {
+			"type": "secureString",
+			"metadata": "Secure string for 'accountKey' of 'ADLSGen2'"
+		},
 		"AdventureDb_password": {
 			"type": "secureString",
 			"metadata": "Secure string for 'password' of 'AdventureDb'"
@@ -18,6 +22,10 @@
 		"AdventureWorksForMarkup_password": {
 			"type": "secureString",
 			"metadata": "Secure string for 'password' of 'AdventureWorksForMarkup'"
+		},
+		"BlobCsvToParquet_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'BlobCsvToParquet'"
 		},
 		"BlobTripDataFare_connectionString": {
 			"type": "secureString",
@@ -31,6 +39,10 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'accountKey' of 'DLSTripdata'"
 		},
+		"FlipkartBlob_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'FlipkartBlob'"
+		},
 		"ProductsBlob_connectionString": {
 			"type": "secureString",
 			"metadata": "Secure string for 'connectionString' of 'ProductsBlob'"
@@ -38,6 +50,10 @@
 		"SqlDBTripData_password": {
 			"type": "secureString",
 			"metadata": "Secure string for 'password' of 'SqlDBTripData'"
+		},
+		"ADLSGen2_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://saadlf.dfs.core.windows.net/"
 		},
 		"AdventureDb_properties_typeProperties_server": {
 			"type": "string",
@@ -96,6 +112,52 @@
 		"factoryId": "[concat('Microsoft.DataFactory/factories/', parameters('factoryName'))]"
 	},
 	"resources": [
+		{
+			"name": "[concat(parameters('factoryName'), '/Assignment Pipeline CSV 2 Parquet')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"activities": [
+					{
+						"name": "Data flow1",
+						"type": "ExecuteDataFlow",
+						"dependsOn": [],
+						"policy": {
+							"timeout": "0.12:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"dataflow": {
+								"referenceName": "dataflow1",
+								"type": "DataFlowReference",
+								"parameters": {},
+								"datasetParameters": {
+									"FlipkartData": {},
+									"SInktoBlobParquet": {}
+								}
+							},
+							"staging": {},
+							"compute": {
+								"coreCount": 8,
+								"computeType": "General"
+							},
+							"traceLevel": "Fine"
+						}
+					}
+				],
+				"policy": {
+					"elapsedTimeMetric": {}
+				},
+				"annotations": []
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/dataflows/dataflow1')]"
+			]
+		},
 		{
 			"name": "[concat(parameters('factoryName'), '/Pipeline sql to blob json')]",
 			"type": "Microsoft.DataFactory/factories/pipelines",
@@ -843,6 +905,115 @@
 			]
 		},
 		{
+			"name": "[concat(parameters('factoryName'), '/FlipkartSourceCSV')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "FlipkartBlob",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "DelimitedText",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobStorageLocation",
+						"fileName": "Flipkart.csv",
+						"container": "flipkart"
+					},
+					"columnDelimiter": ",",
+					"escapeChar": "\\",
+					"firstRowAsHeader": true,
+					"quoteChar": "\""
+				},
+				"schema": [
+					{
+						"name": "id",
+						"type": "String"
+					},
+					{
+						"name": "title",
+						"type": "String"
+					},
+					{
+						"name": "Rating",
+						"type": "String"
+					},
+					{
+						"name": "maincateg",
+						"type": "String"
+					},
+					{
+						"name": "platform",
+						"type": "String"
+					},
+					{
+						"name": "actprice1",
+						"type": "String"
+					},
+					{
+						"name": "norating1",
+						"type": "String"
+					},
+					{
+						"name": "noreviews1",
+						"type": "String"
+					},
+					{
+						"name": "star_5f",
+						"type": "String"
+					},
+					{
+						"name": "star_4f",
+						"type": "String"
+					},
+					{
+						"name": "star_3f",
+						"type": "String"
+					},
+					{
+						"name": "star_2f",
+						"type": "String"
+					},
+					{
+						"name": "star_1f",
+						"type": "String"
+					},
+					{
+						"name": "fulfilled1",
+						"type": "String"
+					}
+				]
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/FlipkartBlob')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/Parquet1')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "BlobCsvToParquet",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "Parquet",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobStorageLocation",
+						"container": "flipkart"
+					},
+					"compressionCodec": "snappy"
+				},
+				"schema": []
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/BlobCsvToParquet')]"
+			]
+		},
+		{
 			"name": "[concat(parameters('factoryName'), '/ProductCSV')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
@@ -1058,6 +1229,23 @@
 			]
 		},
 		{
+			"name": "[concat(parameters('factoryName'), '/ADLSGen2')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "AzureBlobFS",
+				"typeProperties": {
+					"url": "[parameters('ADLSGen2_properties_typeProperties_url')]",
+					"accountKey": {
+						"type": "SecureString",
+						"value": "[parameters('ADLSGen2_accountKey')]"
+					}
+				}
+			},
+			"dependsOn": []
+		},
+		{
 			"name": "[concat(parameters('factoryName'), '/AdventureDb')]",
 			"type": "Microsoft.DataFactory/factories/linkedServices",
 			"apiVersion": "2018-06-01",
@@ -1124,6 +1312,19 @@
 			"dependsOn": []
 		},
 		{
+			"name": "[concat(parameters('factoryName'), '/BlobCsvToParquet')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "AzureBlobStorage",
+				"typeProperties": {
+					"connectionString": "[parameters('BlobCsvToParquet_connectionString')]"
+				}
+			},
+			"dependsOn": []
+		},
+		{
 			"name": "[concat(parameters('factoryName'), '/BlobTripDataFare')]",
 			"type": "Microsoft.DataFactory/factories/linkedServices",
 			"apiVersion": "2018-06-01",
@@ -1162,6 +1363,19 @@
 						"type": "SecureString",
 						"value": "[parameters('DLSTripdata_accountKey')]"
 					}
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/FlipkartBlob')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "AzureBlobStorage",
+				"typeProperties": {
+					"connectionString": "[parameters('FlipkartBlob_connectionString')]"
 				}
 			},
 			"dependsOn": []
@@ -1385,6 +1599,75 @@
 				"[concat(variables('factoryId'), '/datasets/TripDataDLS')]",
 				"[concat(variables('factoryId'), '/datasets/AzureSqlTableTripData')]",
 				"[concat(variables('factoryId'), '/datasets/TripAggregateCSV')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/dataflow1')]",
+			"type": "Microsoft.DataFactory/factories/dataflows",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"type": "MappingDataFlow",
+				"typeProperties": {
+					"sources": [
+						{
+							"dataset": {
+								"referenceName": "FlipkartSourceCSV",
+								"type": "DatasetReference"
+							},
+							"name": "FlipkartData"
+						}
+					],
+					"sinks": [
+						{
+							"dataset": {
+								"referenceName": "Parquet1",
+								"type": "DatasetReference"
+							},
+							"name": "SInktoBlobParquet"
+						}
+					],
+					"transformations": [
+						{
+							"name": "FilterReviews"
+						},
+						{
+							"name": "derivedColumn1"
+						}
+					],
+					"scriptLines": [
+						"source(output(",
+						"          id as string,",
+						"          title as string,",
+						"          Rating as string,",
+						"          maincateg as string,",
+						"          platform as string,",
+						"          actprice1 as string,",
+						"          norating1 as string,",
+						"          noreviews1 as string,",
+						"          star_5f as string,",
+						"          star_4f as string,",
+						"          star_3f as string,",
+						"          star_2f as string,",
+						"          star_1f as string,",
+						"          fulfilled1 as string",
+						"     ),",
+						"     allowSchemaDrift: true,",
+						"     validateSchema: false,",
+						"     ignoreNoFilesFound: false) ~> FlipkartData",
+						"FlipkartData filter(toInteger(norating1) < 10 || (toInteger(noreviews1) < 10)) ~> FilterReviews",
+						"FilterReviews derive(Positive_review_ratio = toInteger(star_5f) / toInteger(norating1),",
+						"          Total_stars = toInteger(star_1f) + toInteger(star_2f) + toInteger(star_3f) + toInteger(star_4f) + toInteger(star_5f)) ~> derivedColumn1",
+						"derivedColumn1 sink(allowSchemaDrift: true,",
+						"     validateSchema: false,",
+						"     format: 'parquet',",
+						"     skipDuplicateMapInputs: true,",
+						"     skipDuplicateMapOutputs: true) ~> SInktoBlobParquet"
+					]
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/datasets/FlipkartSourceCSV')]",
+				"[concat(variables('factoryId'), '/datasets/Parquet1')]"
 			]
 		}
 	]

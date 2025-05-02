@@ -5,6 +5,9 @@
 		"factoryName": {
 			"value": "adf-demo-04082003"
 		},
+		"ADLSGen2_accountKey": {
+			"value": ""
+		},
 		"AdventureDb_password": {
 			"value": ""
 		},
@@ -12,6 +15,9 @@
 			"value": ""
 		},
 		"AdventureWorksForMarkup_password": {
+			"value": ""
+		},
+		"BlobCsvToParquet_connectionString": {
 			"value": ""
 		},
 		"BlobTripDataFare_connectionString": {
@@ -23,11 +29,17 @@
 		"DLSTripdata_accountKey": {
 			"value": ""
 		},
+		"FlipkartBlob_connectionString": {
+			"value": ""
+		},
 		"ProductsBlob_connectionString": {
 			"value": ""
 		},
 		"SqlDBTripData_password": {
 			"value": ""
+		},
+		"ADLSGen2_properties_typeProperties_url": {
+			"value": "https://saadlf.dfs.core.windows.net/"
 		},
 		"AdventureDb_properties_typeProperties_server": {
 			"value": "serveradfaditya.database.windows.net"
