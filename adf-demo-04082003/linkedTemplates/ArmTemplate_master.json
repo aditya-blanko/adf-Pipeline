@@ -19,6 +19,10 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'password' of 'AdventureWorksForMarkup'"
 		},
+		"BlobTripDataFare_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'BlobTripDataFare'"
+		},
 		"CustomersBlob_connectionString": {
 			"type": "secureString",
 			"metadata": "Secure string for 'connectionString' of 'CustomersBlob'"
@@ -122,6 +126,9 @@
 					},
 					"AdventureWorksForMarkup_password": {
 						"value": "[parameters('AdventureWorksForMarkup_password')]"
+					},
+					"BlobTripDataFare_connectionString": {
+						"value": "[parameters('BlobTripDataFare_connectionString')]"
 					},
 					"CustomersBlob_connectionString": {
 						"value": "[parameters('CustomersBlob_connectionString')]"
