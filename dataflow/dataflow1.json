@@ -12,10 +12,21 @@
 					"name": "FlipkartData"
 				}
 			],
-			"sinks": [],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "Parquet1",
+						"type": "DatasetReference"
+					},
+					"name": "SInktoBlobParquet"
+				}
+			],
 			"transformations": [
 				{
 					"name": "FilterReviews"
+				},
+				{
+					"name": "derivedColumn1"
 				}
 			],
 			"scriptLines": [
@@ -38,7 +49,14 @@
 				"     allowSchemaDrift: true,",
 				"     validateSchema: false,",
 				"     ignoreNoFilesFound: false) ~> FlipkartData",
-				"FlipkartData filter(ERROR_FUNCTION('')) ~> FilterReviews"
+				"FlipkartData filter(toInteger(norating1) < 10 || (toInteger(noreviews1) < 10)) ~> FilterReviews",
+				"FilterReviews derive(Positive_review_ratio = toInteger(star_5f) / toInteger(norating1),",
+				"          Total_stars = toInteger(star_1f) + toInteger(star_2f) + toInteger(star_3f) + toInteger(star_4f) + toInteger(star_5f)) ~> derivedColumn1",
+				"derivedColumn1 sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     format: 'parquet',",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true) ~> SInktoBlobParquet"
 			]
 		}
 	}
