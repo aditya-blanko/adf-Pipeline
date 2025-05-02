@@ -19,13 +19,21 @@
 					"name": "TripFareTable"
 				}
 			],
-			"sinks": [],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "TripAggregateCSV",
+						"type": "DatasetReference"
+					},
+					"name": "SinkBlob"
+				}
+			],
 			"transformations": [
 				{
 					"name": "InnerJoinTrip"
 				},
 				{
-					"name": "AggregateByPayment"
+					"name": "AggregateByPaymentType"
 				}
 			],
 			"scriptLines": [
@@ -73,7 +81,13 @@
 				"     matchType:'exact',",
 				"     ignoreSpaces: false,",
 				"     broadcast: 'auto')~> InnerJoinTrip",
-				"InnerJoinTrip aggregate() ~> AggregateByPayment"
+				"InnerJoinTrip aggregate(groupBy(payment_type),",
+				"     Average_Fare = avg(toInteger(total_amount)),",
+				"          Total_Trip_Distance = sum(trip_distance)) ~> AggregateByPaymentType",
+				"AggregateByPaymentType sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true) ~> SinkBlob"
 			]
 		}
 	}
