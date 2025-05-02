@@ -1,0 +1,80 @@
+{
+	"name": "DfTripData",
+	"properties": {
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "TripDataDLS",
+						"type": "DatasetReference"
+					},
+					"name": "TripDatacsv"
+				},
+				{
+					"dataset": {
+						"referenceName": "AzureSqlTableTripData",
+						"type": "DatasetReference"
+					},
+					"name": "TripFareTable"
+				}
+			],
+			"sinks": [],
+			"transformations": [
+				{
+					"name": "InnerJoinTrip"
+				},
+				{
+					"name": "AggregateByPayment"
+				}
+			],
+			"scriptLines": [
+				"source(output(",
+				"          medallion as string,",
+				"          hack_license as string,",
+				"          vendor_id as string,",
+				"          rate_code as short,",
+				"          store_and_fwd_flag as boolean,",
+				"          pickup_datetime as timestamp,",
+				"          dropoff_datetime as timestamp,",
+				"          passenger_count as short,",
+				"          trip_time_in_secs as short,",
+				"          trip_distance as double,",
+				"          pickup_longitude as double,",
+				"          pickup_latitude as double,",
+				"          dropoff_longitude as double,",
+				"          dropoff_latitude as double",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false) ~> TripDatacsv",
+				"source(output(",
+				"          medallion as string,",
+				"          hack_license as string,",
+				"          vendor_id as string,",
+				"          pickup_datetime as timestamp,",
+				"          payment_type as string,",
+				"          fare_amount as string,",
+				"          surcharge as string,",
+				"          mta_tax as string,",
+				"          tip_amount as string,",
+				"          tolls_amount as string,",
+				"          total_amount as string",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     isolationLevel: 'READ_UNCOMMITTED',",
+				"     format: 'table') ~> TripFareTable",
+				"TripDatacsv, TripFareTable join(TripDatacsv@medallion == TripFareTable@medallion",
+				"     && TripDatacsv@hack_license == TripFareTable@hack_license",
+				"     && TripDatacsv@vendor_id == TripFareTable@vendor_id",
+				"     && TripDatacsv@pickup_datetime == toDate(TripFareTable@pickup_datetime),",
+				"     joinType:'inner',",
+				"     matchType:'exact',",
+				"     ignoreSpaces: false,",
+				"     broadcast: 'auto')~> InnerJoinTrip",
+				"InnerJoinTrip aggregate() ~> AggregateByPayment"
+			]
+		}
+	}
+}
