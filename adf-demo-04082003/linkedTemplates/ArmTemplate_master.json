@@ -23,9 +23,17 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'connectionString' of 'CustomersBlob'"
 		},
+		"DLSTripdata_accountKey": {
+			"type": "secureString",
+			"metadata": "Secure string for 'accountKey' of 'DLSTripdata'"
+		},
 		"ProductsBlob_connectionString": {
 			"type": "secureString",
 			"metadata": "Secure string for 'connectionString' of 'ProductsBlob'"
+		},
+		"SqlDBTripData_password": {
+			"type": "secureString",
+			"metadata": "Secure string for 'password' of 'SqlDBTripData'"
 		},
 		"AdventureDb_properties_typeProperties_server": {
 			"type": "string",
@@ -60,6 +68,22 @@
 			"defaultValue": "aditya_db"
 		},
 		"AdventureWorksForMarkup_properties_typeProperties_userName": {
+			"type": "string",
+			"defaultValue": "AdityaSinghal"
+		},
+		"DLSTripdata_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://saadlf.dfs.core.windows.net/"
+		},
+		"SqlDBTripData_properties_typeProperties_server": {
+			"type": "string",
+			"defaultValue": "serveradfaditya.database.windows.net"
+		},
+		"SqlDBTripData_properties_typeProperties_database": {
+			"type": "string",
+			"defaultValue": "taxi-data"
+		},
+		"SqlDBTripData_properties_typeProperties_userName": {
 			"type": "string",
 			"defaultValue": "AdityaSinghal"
 		},
@@ -102,8 +126,14 @@
 					"CustomersBlob_connectionString": {
 						"value": "[parameters('CustomersBlob_connectionString')]"
 					},
+					"DLSTripdata_accountKey": {
+						"value": "[parameters('DLSTripdata_accountKey')]"
+					},
 					"ProductsBlob_connectionString": {
 						"value": "[parameters('ProductsBlob_connectionString')]"
+					},
+					"SqlDBTripData_password": {
+						"value": "[parameters('SqlDBTripData_password')]"
 					},
 					"AdventureDb_properties_typeProperties_server": {
 						"value": "[parameters('AdventureDb_properties_typeProperties_server')]"
@@ -131,10 +161,42 @@
 					},
 					"AdventureWorksForMarkup_properties_typeProperties_userName": {
 						"value": "[parameters('AdventureWorksForMarkup_properties_typeProperties_userName')]"
+					},
+					"DLSTripdata_properties_typeProperties_url": {
+						"value": "[parameters('DLSTripdata_properties_typeProperties_url')]"
+					},
+					"SqlDBTripData_properties_typeProperties_server": {
+						"value": "[parameters('SqlDBTripData_properties_typeProperties_server')]"
+					},
+					"SqlDBTripData_properties_typeProperties_database": {
+						"value": "[parameters('SqlDBTripData_properties_typeProperties_database')]"
+					},
+					"SqlDBTripData_properties_typeProperties_userName": {
+						"value": "[parameters('SqlDBTripData_properties_typeProperties_userName')]"
 					}
 				}
 			},
 			"dependsOn": []
+		},
+		{
+			"name": "adf-demo-04082003_ArmTemplate_1",
+			"type": "Microsoft.Resources/deployments",
+			"apiVersion": "2024-03-01",
+			"properties": {
+				"mode": "incremental",
+				"templateLink": {
+					"uri": "[concat(parameters('containerUri'), '/ArmTemplate_1.json', parameters('containerSasToken'))]",
+					"contentVersion": "1.0.0.0"
+				},
+				"parameters": {
+					"factoryName": {
+						"value": "[parameters('factoryName')]"
+					}
+				}
+			},
+			"dependsOn": [
+				"[resourceId('Microsoft.Resources/deployments', 'adf-demo-04082003_ArmTemplate_0')]"
+			]
 		}
 	]
 }

@@ -17,7 +17,13 @@
 		"CustomersBlob_connectionString": {
 			"value": ""
 		},
+		"DLSTripdata_accountKey": {
+			"value": ""
+		},
 		"ProductsBlob_connectionString": {
+			"value": ""
+		},
+		"SqlDBTripData_password": {
 			"value": ""
 		},
 		"AdventureDb_properties_typeProperties_server": {
@@ -45,6 +51,18 @@
 			"value": "aditya_db"
 		},
 		"AdventureWorksForMarkup_properties_typeProperties_userName": {
+			"value": "AdityaSinghal"
+		},
+		"DLSTripdata_properties_typeProperties_url": {
+			"value": "https://saadlf.dfs.core.windows.net/"
+		},
+		"SqlDBTripData_properties_typeProperties_server": {
+			"value": "serveradfaditya.database.windows.net"
+		},
+		"SqlDBTripData_properties_typeProperties_database": {
+			"value": "taxi-data"
+		},
+		"SqlDBTripData_properties_typeProperties_userName": {
 			"value": "AdityaSinghal"
 		}
 	}
