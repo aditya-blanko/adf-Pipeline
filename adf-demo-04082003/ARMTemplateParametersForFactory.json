@@ -38,6 +38,9 @@
 		"SqlDBTripData_password": {
 			"value": ""
 		},
+		"AdventureLookupSales_connectionString": {
+			"value": ""
+		},
 		"ADLSGen2_properties_typeProperties_url": {
 			"value": "https://saadlf.dfs.core.windows.net/"
 		},

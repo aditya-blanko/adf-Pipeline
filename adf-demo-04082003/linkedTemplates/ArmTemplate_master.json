@@ -51,6 +51,10 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'password' of 'SqlDBTripData'"
 		},
+		"AdventureLookupSales_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'AdventureLookupSales'"
+		},
 		"ADLSGen2_properties_typeProperties_url": {
 			"type": "string",
 			"defaultValue": "https://saadlf.dfs.core.windows.net/"
@@ -166,6 +170,9 @@
 					},
 					"SqlDBTripData_password": {
 						"value": "[parameters('SqlDBTripData_password')]"
+					},
+					"AdventureLookupSales_connectionString": {
+						"value": "[parameters('AdventureLookupSales_connectionString')]"
 					},
 					"ADLSGen2_properties_typeProperties_url": {
 						"value": "[parameters('ADLSGen2_properties_typeProperties_url')]"
