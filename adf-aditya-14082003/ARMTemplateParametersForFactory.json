@@ -1,0 +1,93 @@
+{
+	"$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"value": "adf-aditya-14082003"
+		},
+		"ADLSGen2_accountKey": {
+			"value": ""
+		},
+		"AdventureDb_password": {
+			"value": ""
+		},
+		"AdventureLookupSales_connectionString": {
+			"value": ""
+		},
+		"AdventureWorksDB_password": {
+			"value": ""
+		},
+		"AdventureWorksForMarkup_password": {
+			"value": ""
+		},
+		"BlobCsvToParquet_connectionString": {
+			"value": ""
+		},
+		"BlobTripDataFare_connectionString": {
+			"value": ""
+		},
+		"CustomersBlob_connectionString": {
+			"value": ""
+		},
+		"DLSTripdata_accountKey": {
+			"value": ""
+		},
+		"DataAssessment_accountKey": {
+			"value": ""
+		},
+		"FlipkartBlob_connectionString": {
+			"value": ""
+		},
+		"ProductsBlob_connectionString": {
+			"value": ""
+		},
+		"SqlDBTripData_password": {
+			"value": ""
+		},
+		"ADLSGen2_properties_typeProperties_url": {
+			"value": "https://saadlf.dfs.core.windows.net/"
+		},
+		"AdventureDb_properties_typeProperties_server": {
+			"value": "serveradfaditya.database.windows.net"
+		},
+		"AdventureDb_properties_typeProperties_database": {
+			"value": "aditya_db"
+		},
+		"AdventureDb_properties_typeProperties_userName": {
+			"value": "AdityaSinghal"
+		},
+		"AdventureWorksDB_properties_typeProperties_server": {
+			"value": "serveradfaditya.database.windows.net"
+		},
+		"AdventureWorksDB_properties_typeProperties_database": {
+			"value": "aditya_db"
+		},
+		"AdventureWorksDB_properties_typeProperties_userName": {
+			"value": "AdityaSinghal"
+		},
+		"AdventureWorksForMarkup_properties_typeProperties_server": {
+			"value": "serveradfaditya.database.windows.net"
+		},
+		"AdventureWorksForMarkup_properties_typeProperties_database": {
+			"value": "aditya_db"
+		},
+		"AdventureWorksForMarkup_properties_typeProperties_userName": {
+			"value": "AdityaSinghal"
+		},
+		"DLSTripdata_properties_typeProperties_url": {
+			"value": "https://saadlf.dfs.core.windows.net/"
+		},
+		"DataAssessment_properties_typeProperties_url": {
+			"value": "https://saassessmentadlssinghal.dfs.core.windows.net/"
+		},
+		"SqlDBTripData_properties_typeProperties_server": {
+			"value": "serveradfaditya.database.windows.net"
+		},
+		"SqlDBTripData_properties_typeProperties_database": {
+			"value": "taxi-data"
+		},
+		"SqlDBTripData_properties_typeProperties_userName": {
+			"value": "AdityaSinghal"
+		}
+	}
+}

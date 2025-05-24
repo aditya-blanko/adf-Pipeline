@@ -1,0 +1,278 @@
+{
+	"$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"type": "string",
+			"metadata": "Data Factory name",
+			"defaultValue": "adf-aditya-14082003"
+		},
+		"ADLSGen2_accountKey": {
+			"type": "secureString",
+			"metadata": "Secure string for 'accountKey' of 'ADLSGen2'"
+		},
+		"AdventureDb_password": {
+			"type": "secureString",
+			"metadata": "Secure string for 'password' of 'AdventureDb'"
+		},
+		"AdventureLookupSales_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'AdventureLookupSales'"
+		},
+		"AdventureWorksDB_password": {
+			"type": "secureString",
+			"metadata": "Secure string for 'password' of 'AdventureWorksDB'"
+		},
+		"AdventureWorksForMarkup_password": {
+			"type": "secureString",
+			"metadata": "Secure string for 'password' of 'AdventureWorksForMarkup'"
+		},
+		"BlobCsvToParquet_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'BlobCsvToParquet'"
+		},
+		"BlobTripDataFare_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'BlobTripDataFare'"
+		},
+		"CustomersBlob_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'CustomersBlob'"
+		},
+		"DLSTripdata_accountKey": {
+			"type": "secureString",
+			"metadata": "Secure string for 'accountKey' of 'DLSTripdata'"
+		},
+		"DataAssessment_accountKey": {
+			"type": "secureString",
+			"metadata": "Secure string for 'accountKey' of 'DataAssessment'"
+		},
+		"FlipkartBlob_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'FlipkartBlob'"
+		},
+		"ProductsBlob_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'ProductsBlob'"
+		},
+		"SqlDBTripData_password": {
+			"type": "secureString",
+			"metadata": "Secure string for 'password' of 'SqlDBTripData'"
+		},
+		"ADLSGen2_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://saadlf.dfs.core.windows.net/"
+		},
+		"AdventureDb_properties_typeProperties_server": {
+			"type": "string",
+			"defaultValue": "serveradfaditya.database.windows.net"
+		},
+		"AdventureDb_properties_typeProperties_database": {
+			"type": "string",
+			"defaultValue": "aditya_db"
+		},
+		"AdventureDb_properties_typeProperties_userName": {
+			"type": "string",
+			"defaultValue": "AdityaSinghal"
+		},
+		"AdventureWorksDB_properties_typeProperties_server": {
+			"type": "string",
+			"defaultValue": "serveradfaditya.database.windows.net"
+		},
+		"AdventureWorksDB_properties_typeProperties_database": {
+			"type": "string",
+			"defaultValue": "aditya_db"
+		},
+		"AdventureWorksDB_properties_typeProperties_userName": {
+			"type": "string",
+			"defaultValue": "AdityaSinghal"
+		},
+		"AdventureWorksForMarkup_properties_typeProperties_server": {
+			"type": "string",
+			"defaultValue": "serveradfaditya.database.windows.net"
+		},
+		"AdventureWorksForMarkup_properties_typeProperties_database": {
+			"type": "string",
+			"defaultValue": "aditya_db"
+		},
+		"AdventureWorksForMarkup_properties_typeProperties_userName": {
+			"type": "string",
+			"defaultValue": "AdityaSinghal"
+		},
+		"DLSTripdata_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://saadlf.dfs.core.windows.net/"
+		},
+		"DataAssessment_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://saassessmentadlssinghal.dfs.core.windows.net/"
+		},
+		"SqlDBTripData_properties_typeProperties_server": {
+			"type": "string",
+			"defaultValue": "serveradfaditya.database.windows.net"
+		},
+		"SqlDBTripData_properties_typeProperties_database": {
+			"type": "string",
+			"defaultValue": "taxi-data"
+		},
+		"SqlDBTripData_properties_typeProperties_userName": {
+			"type": "string",
+			"defaultValue": "AdityaSinghal"
+		},
+		"containerUri": {
+			"type": "string",
+			"metadata": "URI to storage account containing linked ARM templates"
+		},
+		"containerSasToken": {
+			"type": "string",
+			"metadata": "Sas token to storage account containing linked ARM templates"
+		}
+	},
+	"variables": {
+		"factoryId": "[concat('Microsoft.DataFactory/factories/', parameters('factoryName'))]"
+	},
+	"resources": [
+		{
+			"name": "adf-aditya-14082003_ArmTemplate_0",
+			"type": "Microsoft.Resources/deployments",
+			"apiVersion": "2024-03-01",
+			"properties": {
+				"mode": "incremental",
+				"templateLink": {
+					"uri": "[concat(parameters('containerUri'), '/ArmTemplate_0.json', parameters('containerSasToken'))]",
+					"contentVersion": "1.0.0.0"
+				},
+				"parameters": {
+					"factoryName": {
+						"value": "[parameters('factoryName')]"
+					},
+					"ADLSGen2_accountKey": {
+						"value": "[parameters('ADLSGen2_accountKey')]"
+					},
+					"AdventureDb_password": {
+						"value": "[parameters('AdventureDb_password')]"
+					},
+					"AdventureLookupSales_connectionString": {
+						"value": "[parameters('AdventureLookupSales_connectionString')]"
+					},
+					"AdventureWorksDB_password": {
+						"value": "[parameters('AdventureWorksDB_password')]"
+					},
+					"AdventureWorksForMarkup_password": {
+						"value": "[parameters('AdventureWorksForMarkup_password')]"
+					},
+					"BlobCsvToParquet_connectionString": {
+						"value": "[parameters('BlobCsvToParquet_connectionString')]"
+					},
+					"BlobTripDataFare_connectionString": {
+						"value": "[parameters('BlobTripDataFare_connectionString')]"
+					},
+					"CustomersBlob_connectionString": {
+						"value": "[parameters('CustomersBlob_connectionString')]"
+					},
+					"DLSTripdata_accountKey": {
+						"value": "[parameters('DLSTripdata_accountKey')]"
+					},
+					"DataAssessment_accountKey": {
+						"value": "[parameters('DataAssessment_accountKey')]"
+					},
+					"FlipkartBlob_connectionString": {
+						"value": "[parameters('FlipkartBlob_connectionString')]"
+					},
+					"ProductsBlob_connectionString": {
+						"value": "[parameters('ProductsBlob_connectionString')]"
+					},
+					"SqlDBTripData_password": {
+						"value": "[parameters('SqlDBTripData_password')]"
+					},
+					"ADLSGen2_properties_typeProperties_url": {
+						"value": "[parameters('ADLSGen2_properties_typeProperties_url')]"
+					},
+					"AdventureDb_properties_typeProperties_server": {
+						"value": "[parameters('AdventureDb_properties_typeProperties_server')]"
+					},
+					"AdventureDb_properties_typeProperties_database": {
+						"value": "[parameters('AdventureDb_properties_typeProperties_database')]"
+					},
+					"AdventureDb_properties_typeProperties_userName": {
+						"value": "[parameters('AdventureDb_properties_typeProperties_userName')]"
+					},
+					"AdventureWorksDB_properties_typeProperties_server": {
+						"value": "[parameters('AdventureWorksDB_properties_typeProperties_server')]"
+					},
+					"AdventureWorksDB_properties_typeProperties_database": {
+						"value": "[parameters('AdventureWorksDB_properties_typeProperties_database')]"
+					},
+					"AdventureWorksDB_properties_typeProperties_userName": {
+						"value": "[parameters('AdventureWorksDB_properties_typeProperties_userName')]"
+					},
+					"AdventureWorksForMarkup_properties_typeProperties_server": {
+						"value": "[parameters('AdventureWorksForMarkup_properties_typeProperties_server')]"
+					},
+					"AdventureWorksForMarkup_properties_typeProperties_database": {
+						"value": "[parameters('AdventureWorksForMarkup_properties_typeProperties_database')]"
+					},
+					"AdventureWorksForMarkup_properties_typeProperties_userName": {
+						"value": "[parameters('AdventureWorksForMarkup_properties_typeProperties_userName')]"
+					},
+					"DLSTripdata_properties_typeProperties_url": {
+						"value": "[parameters('DLSTripdata_properties_typeProperties_url')]"
+					},
+					"DataAssessment_properties_typeProperties_url": {
+						"value": "[parameters('DataAssessment_properties_typeProperties_url')]"
+					},
+					"SqlDBTripData_properties_typeProperties_server": {
+						"value": "[parameters('SqlDBTripData_properties_typeProperties_server')]"
+					},
+					"SqlDBTripData_properties_typeProperties_database": {
+						"value": "[parameters('SqlDBTripData_properties_typeProperties_database')]"
+					},
+					"SqlDBTripData_properties_typeProperties_userName": {
+						"value": "[parameters('SqlDBTripData_properties_typeProperties_userName')]"
+					}
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "adf-aditya-14082003_ArmTemplate_1",
+			"type": "Microsoft.Resources/deployments",
+			"apiVersion": "2024-03-01",
+			"properties": {
+				"mode": "incremental",
+				"templateLink": {
+					"uri": "[concat(parameters('containerUri'), '/ArmTemplate_1.json', parameters('containerSasToken'))]",
+					"contentVersion": "1.0.0.0"
+				},
+				"parameters": {
+					"factoryName": {
+						"value": "[parameters('factoryName')]"
+					}
+				}
+			},
+			"dependsOn": [
+				"[resourceId('Microsoft.Resources/deployments', 'adf-aditya-14082003_ArmTemplate_0')]"
+			]
+		},
+		{
+			"name": "adf-aditya-14082003_ArmTemplate_2",
+			"type": "Microsoft.Resources/deployments",
+			"apiVersion": "2024-03-01",
+			"properties": {
+				"mode": "incremental",
+				"templateLink": {
+					"uri": "[concat(parameters('containerUri'), '/ArmTemplate_2.json', parameters('containerSasToken'))]",
+					"contentVersion": "1.0.0.0"
+				},
+				"parameters": {
+					"factoryName": {
+						"value": "[parameters('factoryName')]"
+					}
+				}
+			},
+			"dependsOn": [
+				"[resourceId('Microsoft.Resources/deployments', 'adf-aditya-14082003_ArmTemplate_1')]"
+			]
+		}
+	]
+}
