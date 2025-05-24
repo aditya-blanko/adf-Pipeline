@@ -1,0 +1,60 @@
+{
+	"name": "dataflowassessment",
+	"properties": {
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "DelimitedText1",
+						"type": "DatasetReference"
+					},
+					"name": "DataAssessment"
+				}
+			],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "DelimitedText2",
+						"type": "DatasetReference"
+					},
+					"name": "sink1"
+				}
+			],
+			"transformations": [
+				{
+					"name": "derivedColumnAssessment"
+				}
+			],
+			"scriptLines": [
+				"source(output(",
+				"          SaleID as short,",
+				"          CustomerID as short,",
+				"          ProductName as string,",
+				"          Quantity as short,",
+				"          SaleAmount as short,",
+				"          SaleDate as date",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false) ~> DataAssessment",
+				"DataAssessment derive(IngestDate = currentUTC()) ~> derivedColumnAssessment",
+				"derivedColumnAssessment sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     input(",
+				"          SaleID as string,",
+				"          CustomerID as string,",
+				"          ProductName as string,",
+				"          Quantity as string,",
+				"          SaleAmount as string,",
+				"          SaleDate as string",
+				"     ),",
+				"     umask: 0022,",
+				"     preCommands: [],",
+				"     postCommands: [],",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true) ~> sink1"
+			]
+		}
+	}
+}
