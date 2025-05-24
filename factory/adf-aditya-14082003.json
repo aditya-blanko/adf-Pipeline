@@ -1,0 +1,9 @@
+{
+	"name": "adf-aditya-14082003",
+	"location": "centralus",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "81312c54-7dbe-402c-864a-fe63de6a2515",
+		"tenantId": "ccb92876-d4ba-4bc7-b967-c9177170db6d"
+	}
+}
